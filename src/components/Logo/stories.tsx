@@ -10,10 +10,4 @@ export default {
   }
 } as Meta;
 
-export const Basic: Story = (args) => <Logo {...args} />;
-Basic.args = {
-  title: "title basic",
-  description: "description basic"
-};
-
 export const Default: Story<LogoProps> = (args) => <Logo {...args} />;
