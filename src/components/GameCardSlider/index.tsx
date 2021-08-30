@@ -50,7 +50,7 @@ export type GameCardSliderProps = {
 
 export function GameCardSlider({
   items,
-  color = "black"
+  color = "white"
 }: GameCardSliderProps) {
   return (
     <S.Wrapper color={color}>

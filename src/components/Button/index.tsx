@@ -16,6 +16,7 @@ export type ButtonProps = {
   size?: "small" | "medium" | "large";
   fullWidth?: boolean;
   icon?: ReactNode;
+  minimal?: boolean;
   as?: ElementType;
   onClick?: () => (event: MouseEvent<HTMLButtonElement>) => void;
 } & ButtonTypes;
@@ -25,10 +26,17 @@ export function Button({
   size = "medium",
   fullWidth = false,
   icon,
+  minimal = false,
   ...props
 }: ButtonProps) {
   return (
-    <S.Wrapper size={size} fullWidth={fullWidth} hasIcon={!!icon} {...props}>
+    <S.Wrapper
+      size={size}
+      fullWidth={fullWidth}
+      hasIcon={!!icon}
+      minimal={minimal}
+      {...props}
+    >
       {!!icon && icon}
       {!!children && <span>{children}</span>}
     </S.Wrapper>
