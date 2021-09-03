@@ -2,6 +2,8 @@ import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   ElementType,
+  forwardRef,
+  ForwardRefRenderFunction,
   MouseEvent,
   ReactNode
 } from "react";
@@ -21,24 +23,30 @@ export type ButtonProps = {
   onClick?: () => (event: MouseEvent<HTMLButtonElement>) => void;
 } & ButtonTypes;
 
-export function Button({
-  children,
-  size = "medium",
-  fullWidth = false,
-  icon,
-  minimal = false,
-  ...props
-}: ButtonProps) {
+const ButtonComponent: ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
+  {
+    children,
+    size = "medium",
+    fullWidth = false,
+    icon,
+    minimal = false,
+    ...props
+  },
+  ref
+) => {
   return (
     <S.Wrapper
       size={size}
       fullWidth={fullWidth}
       hasIcon={!!icon}
       minimal={minimal}
+      ref={ref}
       {...props}
     >
       {!!icon && icon}
       {!!children && <span>{children}</span>}
     </S.Wrapper>
   );
-}
+};
+
+export const Button = forwardRef(ButtonComponent);
