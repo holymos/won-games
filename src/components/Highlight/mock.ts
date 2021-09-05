@@ -1,4 +1,4 @@
-export const item = {
+export const highlightMock = {
   title: "Red Dead is back",
   subtitle: "Come see John's new adventure",
   backgroundImage: "/img/red-dead-img.jpg",

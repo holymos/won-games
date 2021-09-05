@@ -3,8 +3,8 @@ import { screen } from "@testing-library/react";
 import { renderWithTheme } from "utils/tests/helpers";
 
 import { items as bannersMock } from "components/BannerSlider/mock";
-import { items as gamesMock } from "components/GameCardSlider/mock";
-import { item as highlightMock } from "components/Highlight/mock";
+import { gamesMock } from "components/GameCardSlider/mock";
+import { highlightMock } from "components/Highlight/mock";
 
 import { Home } from ".";
 
@@ -20,47 +20,29 @@ const props = {
   freeGames: [gamesMock[0]]
 };
 
+jest.mock("components/Showcase", () => {
+  return {
+    __esModule: true,
+    Showcase: function Mock() {
+      return <div data-testid="Mock Showcase"></div>;
+    }
+  };
+});
+
+jest.mock("components/BannerSlider", () => {
+  return {
+    __esModule: true,
+    BannerSlider: function Mock() {
+      return <div data-testid="Mock BannerSlider"></div>;
+    }
+  };
+});
+
 describe("<Home />", () => {
-  it("should render menu and footer", () => {
+  it("should render banner and showcases", () => {
     renderWithTheme(<Home {...props} />);
 
-    expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument();
-
-    expect(
-      screen.getByRole("heading", { name: /contact us/i })
-    ).toBeInTheDocument();
-
-    expect(screen.getAllByRole("img", { name: /won games/i })).toHaveLength(2);
-  });
-
-  it("should render the sections", () => {
-    renderWithTheme(<Home {...props} />);
-
-    expect(screen.getByRole("heading", { name: /news/i })).toBeInTheDocument();
-
-    expect(
-      screen.getByRole("heading", { name: /most popular/i })
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByRole("heading", { name: /upcoming/i })
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByRole("heading", { name: /free games/i })
-    ).toBeInTheDocument();
-  });
-
-  it("should render sections elements", () => {
-    renderWithTheme(<Home {...props} />);
-
-    // banner
-    expect(screen.getAllByText(/defy death 1/i)).toHaveLength(1);
-
-    // card game (5 sections com 1 card cada)
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(5);
-
-    // highlight
-    expect(screen.getAllByText(/red dead is back/i)).toHaveLength(3);
+    expect(screen.getAllByTestId("Mock Showcase")).toHaveLength(5);
+    expect(screen.getByTestId("Mock BannerSlider")).toBeInTheDocument();
   });
 });

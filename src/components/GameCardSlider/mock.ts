@@ -1,4 +1,4 @@
-export const items = [
+export const gamesMock = [
   {
     title: "Population Zero",
     developer: "Rockstar Games",
