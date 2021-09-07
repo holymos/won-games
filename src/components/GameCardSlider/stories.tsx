@@ -2,12 +2,12 @@ import { Story, Meta } from "@storybook/react";
 import { GameCardProps } from "components/GameCard";
 import { GameCardSlider } from ".";
 
-import { items } from "./mock";
+import { gamesMock } from "./mock";
 
 export default {
   title: "GameCardSlider",
   component: GameCardSlider,
-  args: { items },
+  args: { items: gamesMock },
   parameters: {
     layout: "fullscreen",
     backgrounds: {
