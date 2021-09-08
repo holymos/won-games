@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/react";
 import { TextField, TextFieldProps } from ".";
 
-import { EmailOutline } from "@styled-icons/evaicons-outline/EmailOutline";
+import { Email } from "@styled-icons/material-outlined/Email";
 
 export default {
   title: "Form/TextField",
@@ -9,7 +9,7 @@ export default {
   args: {
     label: "E-mail",
     labelFor: "Email",
-    icon: <EmailOutline />,
+    icon: <Email />,
     id: "Email",
     initialValue: "",
     placeholder: "john.cage@gmail.com"

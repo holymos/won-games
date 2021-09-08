@@ -13,7 +13,12 @@ export const Wrapper = styled.div`
       color: ${theme.colors.black};
     `}
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       color: ${theme.colors.white};
       margin: ${theme.spacings.xsmall} 0;
       ${HeadingStyles.wrapperModifiers.lineLeft(theme, "secondary")};
@@ -25,6 +30,8 @@ export const Wrapper = styled.div`
 
     p {
       margin-bottom: ${theme.spacings.xsmall};
+      font-size: ${theme.font.sizes.small};
+      color: : ${theme.colors.gray};
     }
 
     a {

@@ -21,6 +21,7 @@ export function GameDetails({
   developer,
   platforms,
   releaseDate,
+  publisher,
   rating,
   genre
 }: GameDetailsProps) {
@@ -69,7 +70,7 @@ export function GameDetails({
 
         <S.Block>
           <S.Title>Publisher</S.Title>
-          <S.Description>2K</S.Description>
+          <S.Description>{publisher}</S.Description>
         </S.Block>
 
         <S.Block>
