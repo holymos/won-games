@@ -1,15 +1,14 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { EmailOutline } from "@styled-icons/evaicons-outline/EmailOutline";
-
 import { renderWithTheme } from "utils/tests/helpers";
 
 import { TextField } from ".";
+import { Email } from "@styled-icons/material-outlined";
 
 describe("<TextField />", () => {
   it("Renders with Label", () => {
-    renderWithTheme(<TextField label="Label" labelFor="Field" id="Field" />);
+    renderWithTheme(<TextField label="Label" name="Label" />);
 
     expect(screen.getByLabelText("Label")).toBeInTheDocument();
   });
@@ -30,12 +29,7 @@ describe("<TextField />", () => {
     const onInput = jest.fn();
 
     renderWithTheme(
-      <TextField
-        onInput={onInput}
-        label="TextField"
-        labelFor="TextField"
-        id="TextField"
-      />
+      <TextField onInput={onInput} label="TextField" name="TextField" />
     );
 
     const input = screen.getByRole("textbox");
@@ -51,9 +45,7 @@ describe("<TextField />", () => {
   });
 
   it("Is accessible by tab", () => {
-    renderWithTheme(
-      <TextField label="TextField" labelFor="TextField" id="TextField" />
-    );
+    renderWithTheme(<TextField label="TextField" name="TextField" />);
 
     const input = screen.getByLabelText("TextField");
     expect(document.body).toHaveFocus();
@@ -63,17 +55,14 @@ describe("<TextField />", () => {
   });
 
   it("should render an icon version", () => {
-    renderWithTheme(<TextField icon={<EmailOutline data-testid="icon" />} />);
+    renderWithTheme(<TextField icon={<Email data-testid="icon" />} />);
 
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });
 
   it("should render an icon on the right side", () => {
     renderWithTheme(
-      <TextField
-        icon={<EmailOutline data-testid="icon" />}
-        iconPosition="right"
-      />
+      <TextField icon={<Email data-testid="icon" />} iconPosition="right" />
     );
 
     expect(screen.getByTestId("icon").parentElement).toHaveStyle({ order: 1 });
@@ -86,8 +75,7 @@ describe("<TextField />", () => {
       <TextField
         onInput={onInput}
         label="Text Field"
-        labelFor="textField"
-        id="textField"
+        name="textField"
         disabled
       />
     );
@@ -106,14 +94,7 @@ describe("<TextField />", () => {
   });
 
   it("should not be accessible by tab  when disabled", async () => {
-    renderWithTheme(
-      <TextField
-        label="Text Field"
-        labelFor="textField"
-        id="textField"
-        disabled
-      />
-    );
+    renderWithTheme(<TextField label="Text Field" name="textField" disabled />);
 
     const input = screen.getByRole("textbox");
     expect(document.body).toHaveFocus();
@@ -126,10 +107,9 @@ describe("<TextField />", () => {
   it("renders with error", () => {
     const { container } = renderWithTheme(
       <TextField
-        icon={<EmailOutline />}
+        icon={<Email />}
         label="Text Field"
-        labelFor="textField"
-        id="textField"
+        name="textField"
         error="erro"
       />
     );

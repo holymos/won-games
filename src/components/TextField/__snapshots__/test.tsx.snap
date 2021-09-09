@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TextField /> renders with error 1`] = `
-.c7 {
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
-}
-
 .c4 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -72,6 +66,12 @@ exports[`<TextField /> renders with error 1`] = `
   color: #FF6347;
 }
 
+.c7 {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
 <div>
   <div
     class="c0"
@@ -96,19 +96,19 @@ exports[`<TextField /> renders with error 1`] = `
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g
-            data-name="Layer 2"
-          >
-            <path
-              d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 01-1-1V7.25l7.4 5.55a1 1 0 00.6.2 1 1 0 00.6-.2L20 7.25V17a1 1 0 01-1 1z"
-              data-name="email"
-            />
-          </g>
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+          <path
+            d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"
+          />
         </svg>
       </div>
       <input
         class="c8"
         id="textField"
+        name="textField"
         type="text"
         value=""
       />

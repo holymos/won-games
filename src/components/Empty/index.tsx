@@ -13,7 +13,7 @@ export function Empty({ title, description, hasLink }: EmptyProps) {
   return (
     <S.Wrapper>
       <S.Image
-        src="img/empty.svg"
+        src="/img/empty.svg"
         alt="A gamer in a couch playing videogame"
         role="img"
       />
