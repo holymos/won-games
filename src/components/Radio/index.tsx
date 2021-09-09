@@ -41,5 +41,3 @@ export function Radio({
     </S.Wrapper>
   );
 }
-
-export default Radio;

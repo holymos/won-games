@@ -1,12 +1,12 @@
 import { Story, Meta } from "@storybook/react";
 import { Highlight, HighlightProps } from ".";
 
-import { item } from "./mock";
+import { highlightMock } from "./mock";
 
 export default {
   title: "Highlight",
   component: Highlight,
-  args: { ...item }
+  args: { ...highlightMock }
 } as Meta;
 
 export const Default: Story<HighlightProps> = (args) => (
