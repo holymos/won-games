@@ -4,7 +4,6 @@ import {
   ElementType,
   forwardRef,
   ForwardRefRenderFunction,
-  MouseEvent,
   ReactNode
 } from "react";
 import * as S from "./styles";
@@ -20,7 +19,6 @@ export type ButtonProps = {
   icon?: ReactNode;
   minimal?: boolean;
   as?: ElementType;
-  onClick?: () => (event: MouseEvent<HTMLButtonElement>) => void;
 } & ButtonTypes;
 
 const ButtonComponent: ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
