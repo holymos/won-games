@@ -9,7 +9,7 @@ describe("<Menu />", () => {
 
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/open shopping cart/i)).toBeInTheDocument();
+    expect(screen.getAllByLabelText(/shopping cart/i)).toHaveLength(2);
     expect(screen.getByRole("img", { name: /won games/i })).toBeInTheDocument();
   });
 
@@ -39,12 +39,12 @@ describe("<Menu />", () => {
     expect(screen.getByText(/sign up/i)).toBeInTheDocument();
   });
 
-  it("should show wishlist and account links when logged in", () => {
+  it("should show wishlist and profile links when logged in", () => {
     renderWithTheme(<Menu username="moses" />);
 
     expect(screen.queryByText(/login now/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/wishlist/i)).toBeInTheDocument();
-    expect(screen.getByText(/my account/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/wishlist/i)).toHaveLength(2);
+    expect(screen.getByText(/my profile/i)).toBeInTheDocument();
   });
 });

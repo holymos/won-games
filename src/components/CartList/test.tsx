@@ -17,4 +17,21 @@ describe("<CartList />", () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  it("should render the button", () => {
+    renderWithTheme(
+      <CartList items={cartListMock} total="R$ 330,00" hasButton />
+    );
+
+    expect(
+      screen.getByRole("link", { name: /buy it now/i })
+    ).toBeInTheDocument();
+  });
+
+  it("should render empty component if there are no games", () => {
+    renderWithTheme(<CartList />);
+
+    expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument();
+    expect(screen.queryByText(/total/i)).not.toBeInTheDocument();
+  });
 });
