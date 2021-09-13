@@ -12,7 +12,7 @@ describe("<GameInfo />", () => {
       screen.getByRole("heading", { name: /borderlands 3/i })
     ).toBeInTheDocument();
 
-    expect(screen.getByText(/\$215,00/)).toBeInTheDocument();
+    expect(screen.getByText(/\$215.00/)).toBeInTheDocument();
 
     expect(
       screen.getByText(/Experience the epic space strategy/i)

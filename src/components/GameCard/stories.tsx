@@ -5,10 +5,11 @@ export default {
   title: "GameCard",
   component: GameCard,
   args: {
+    slug: "population-zero",
     title: "Population Zero",
     developer: "Rockstar Games",
     img: "https://source.unsplash.com/user/willianjusten/1042x580",
-    price: "R$ 235,00"
+    price: 235.0
   },
   argTypes: {
     onFav: {
@@ -33,7 +34,7 @@ export const WithPromotion: Story<GameCardProps> = (args) => (
 );
 
 WithPromotion.args = {
-  promotionalPrice: "R$ 200,00"
+  promotionalPrice: 200.0
 };
 
 export const WithRibbon: Story<GameCardProps> = (args) => (
@@ -43,7 +44,7 @@ export const WithRibbon: Story<GameCardProps> = (args) => (
 );
 
 WithRibbon.args = {
-  promotionalPrice: "R$ 200,00",
+  promotionalPrice: 200.0,
   ribbon: "20% OFF",
   ribbonSize: "small",
   ribbonColor: "primary"
