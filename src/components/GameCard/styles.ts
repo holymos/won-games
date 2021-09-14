@@ -61,7 +61,7 @@ export const Info = styled.a`
 export const Title = styled.h3`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.medium};
-    line-height: ${theme.font.sizes.medium};
+    line-height: ${theme.font.sizes.xlarge};
     font-weight: ${theme.font.bold};
     color: ${theme.colors.black};
   `}
@@ -72,6 +72,7 @@ export const Developer = styled.h4`
     font-size: ${theme.font.sizes.small};
     font-weight: ${theme.font.bold};
     color: ${theme.colors.gray};
+    margin-top: 0.3rem;
   `}
 `;
 
@@ -124,6 +125,7 @@ export const Price = styled.div<PriceProps>`
     font-weight: ${theme.font.bold};
     height: 3rem;
     align-items: center;
+    line-height: 1rem;
     ${!isPromotional && priceModifiers.default(theme)};
     ${isPromotional && priceModifiers.promotional(theme)};
   `}

@@ -1,25 +1,42 @@
 import { Home, HomeTemplateProps } from "pages/templates/Home";
 
-import { items as bannersMock } from "components/BannerSlider/mock";
-import { gamesMock } from "components/GameCardSlider/mock";
-import { highlightMock } from "components/Highlight/mock";
+import { initializeApollo } from "utils/apollo";
+import { QUERY_HOME } from "graphql/queries/home";
+import { QueryHome, QueryHomeVariables } from "graphql/generated/QueryHome";
+import { bannerMapper, gamesMapper, highlightMapper } from "utils/mappers";
 
 export default function Index(props: HomeTemplateProps) {
   return <Home {...props} />;
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const apolloClient = initializeApollo();
+  const TODAY = new Date().toISOString().slice(0, 10);
+
+  const {
+    data: { banners, newGames, upcomingGames, freeGames, sections }
+  } = await apolloClient.query<QueryHome, QueryHomeVariables>({
+    query: QUERY_HOME,
+    variables: {
+      date: TODAY
+    }
+  });
+
   return {
     props: {
-      banners: bannersMock,
-      newGames: gamesMock,
-      mostPopularHighlight: highlightMock,
-      mostPopularGames: gamesMock,
-      upcomingGames: gamesMock,
-      upcomingHighlight: highlightMock,
-      upcomingMoreGames: gamesMock,
-      freeGamesHighlight: highlightMock,
-      freeGames: gamesMock
+      revalidade: 60,
+      banners: bannerMapper(banners),
+      newGamesTitle: sections?.newGames?.title,
+      newGames: gamesMapper(newGames),
+      mostPopularGamesTitle: sections?.popularGames?.title,
+      mostPopularHighlight: highlightMapper(sections?.popularGames?.highlight),
+      mostPopularGames: gamesMapper(sections?.popularGames?.games),
+      upcomingGamesTitle: sections?.upcomingGames?.title,
+      upcomingGames: gamesMapper(upcomingGames),
+      upcomingHighlight: highlightMapper(sections?.upcomingGames?.highlight),
+      freeGamesTitle: sections?.freeGames?.title,
+      freeGamesHighlight: highlightMapper(sections?.freeGames?.highlight),
+      freeGames: gamesMapper(freeGames)
     }
   };
 }

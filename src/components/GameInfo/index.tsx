@@ -21,7 +21,9 @@ export function GameInfo({ title, description, price }: GameInfoProps) {
         {title}
       </Heading>
 
-      <Ribbon color="secondary">{formatPrice(price)}</Ribbon>
+      <Ribbon color="secondary">
+        {price > 0 ? formatPrice(price) : "Free"}
+      </Ribbon>
 
       <S.Description>{description}</S.Description>
 
