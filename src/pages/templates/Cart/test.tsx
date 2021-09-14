@@ -54,6 +54,7 @@ jest.mock("components/Empty", () => {
 });
 
 const props = {
+  recommendedTitle: "You may like these games",
   recommendedGames: gamesMock,
   recommendedHighlight: highlightMock,
   items: cartListMock,

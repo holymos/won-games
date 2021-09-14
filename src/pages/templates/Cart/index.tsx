@@ -14,12 +14,14 @@ import * as S from "./styles";
 import { Empty } from "components/Empty";
 
 export type CartTemplateProps = {
+  recommendedTitle: string;
   recommendedGames: GameCardProps[];
   recommendedHighlight: HighlightProps;
 } & CartListProps &
   Pick<PaymentOptionsProps, "cards">;
 
 export function Cart({
+  recommendedTitle = "You may like these games",
   recommendedGames,
   recommendedHighlight,
   items,
@@ -52,7 +54,7 @@ export function Cart({
       </Container>
 
       <Showcase
-        title="You may like these games"
+        title={recommendedTitle}
         games={recommendedGames}
         highlight={recommendedHighlight}
       />
