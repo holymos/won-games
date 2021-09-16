@@ -1,24 +1,44 @@
 import { QUERY_GAMES } from "graphql/queries/games";
 
+export const noGamesMock = {
+  request: {
+    query: QUERY_GAMES,
+    variables: { limit: 15, where: {} }
+  },
+  result: {
+    data: {
+      games: [],
+      gamesConnection: {
+        values: [],
+        __typename: "GameConnection"
+      }
+    }
+  }
+};
+
 export const gamesMock = {
   request: {
     query: QUERY_GAMES,
-    variables: { limit: 15 }
+    variables: { limit: 15, where: {} }
   },
   result: {
     data: {
       games: [
         {
-          name: "RimWorld",
-          slug: "rimworld",
+          name: "Sample Game",
+          slug: "sample-game",
+          price: 518.39,
+          developers: [{ name: "sample developer" }],
           cover: {
-            url: "/uploads/rimworld_8e93acc963.jpg"
+            url: "sample-game.jpg"
           },
-          developers: [{ name: "Ludeon Studios" }],
-          price: 65.99,
           __typename: "Game"
         }
-      ]
+      ],
+      gamesConnection: {
+        values: [{ id: "1" }, { id: "2" }],
+        __typename: "GameConnection"
+      }
     }
   }
 };
@@ -26,7 +46,7 @@ export const gamesMock = {
 export const fetchMoreMock = {
   request: {
     query: QUERY_GAMES,
-    variables: { limit: 15, start: 1 }
+    variables: { limit: 15, where: {}, start: 1 }
   },
   result: {
     data: {
@@ -41,7 +61,11 @@ export const fetchMoreMock = {
           },
           __typename: "Game"
         }
-      ]
+      ],
+      gamesConnection: {
+        values: [{ id: "1" }, { id: "2" }],
+        __typename: "GameConnection"
+      }
     }
   }
 };

@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { xor } from "lodash";
+
 import { Close } from "@styled-icons/material-outlined/Close";
 import { FilterList } from "@styled-icons/material-outlined/FilterList";
+import { ParsedUrlQueryInput } from "querystring";
 
 import { Button } from "components/Button";
 import { Checkbox } from "components/Checkbox";
@@ -21,9 +24,7 @@ export type ItemProps = {
   fields: Field[];
 };
 
-export type Values = {
-  [field: string]: boolean | string;
-};
+export type Values = ParsedUrlQueryInput;
 
 export type ExploreSidebarProps = {
   items: ItemProps[];
@@ -39,15 +40,29 @@ export function ExploreSidebar({
   const [values, setValues] = useState<Values>(initialValues);
   const [isOpen, setIsOpen] = useState(false);
 
-  function handleFilter() {
+  useEffect(() => {
     onFilter(values);
+    // this method comes from another file
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values]);
+
+  function handleFilterMenu() {
     setIsOpen(false);
   }
 
-  function handleChange(name: string, value: boolean | string) {
+  function handleRadio(name: string, value: boolean | string) {
     setValues((oldValues) => ({
       ...oldValues,
       [name]: value
+    }));
+  }
+
+  function handleCheckbox(name: string, value: string) {
+    const currentList = (values[name] as []) || [];
+
+    setValues((oldState) => ({
+      ...oldState,
+      [name]: xor(currentList, [value])
     }));
   }
 
@@ -73,8 +88,10 @@ export function ExploreSidebar({
                   name={field.name}
                   label={field.label}
                   labelFor={field.name}
-                  isChecked={!!values[field.name]}
-                  onCheck={(v) => handleChange(field.name, v)}
+                  isChecked={(values[item.name] as string[])?.includes(
+                    field.name
+                  )}
+                  onCheck={() => handleCheckbox(item.name, field.name)}
                 />
               ))}
 
@@ -87,8 +104,10 @@ export function ExploreSidebar({
                   value={field.name}
                   label={field.label}
                   labelFor={field.name}
-                  defaultChecked={field.name === values[item.name]}
-                  onChange={() => handleChange(item.name, field.name)}
+                  defaultChecked={
+                    String(field.name) === String(values[item.name])
+                  }
+                  onChange={() => handleRadio(item.name, field.name)}
                 />
               ))}
           </S.Items>
@@ -96,7 +115,7 @@ export function ExploreSidebar({
       </S.Content>
 
       <S.Footer>
-        <Button fullWidth size="medium" onClick={handleFilter}>
+        <Button fullWidth size="medium" onClick={handleFilterMenu}>
           Filter
         </Button>
       </S.Footer>

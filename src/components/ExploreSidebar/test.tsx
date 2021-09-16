@@ -20,7 +20,7 @@ describe("<ExploreSidebar />", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByRole("heading", { name: /system/i })
+      screen.getByRole("heading", { name: /platforms/i })
     ).toBeInTheDocument();
 
     expect(screen.getByRole("heading", { name: /genre/i })).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("<ExploreSidebar />", () => {
     renderWithTheme(
       <ExploreSidebar
         items={exploreSidebarMock}
-        initialValues={{ windows: true, sort_by: "low-to-high" }}
+        initialValues={{ platforms: ["windows"], sort_by: "low-to-high" }}
         onFilter={jest.fn}
       />
     );
@@ -67,14 +67,15 @@ describe("<ExploreSidebar />", () => {
     renderWithTheme(
       <ExploreSidebar
         items={exploreSidebarMock}
-        initialValues={{ windows: true, sort_by: "low-to-high" }}
+        initialValues={{ platforms: ["windows"], sort_by: "low-to-high" }}
         onFilter={onFilter}
       />
     );
 
-    userEvent.click(screen.getByRole("button", { name: /filter/i }));
-
-    expect(onFilter).toBeCalledWith({ windows: true, sort_by: "low-to-high" });
+    expect(onFilter).toBeCalledWith({
+      platforms: ["windows"],
+      sort_by: "low-to-high"
+    });
   });
 
   it("should filter with checked values", () => {
@@ -88,11 +89,10 @@ describe("<ExploreSidebar />", () => {
     userEvent.click(screen.getByLabelText("Linux"));
     userEvent.click(screen.getByLabelText("Low to high"));
 
-    userEvent.click(screen.getByRole("button", { name: /filter/i }));
+    expect(onFilter).toHaveBeenCalledTimes(4);
 
     expect(onFilter).toBeCalledWith({
-      windows: true,
-      linux: true,
+      platforms: ["windows", "linux"],
       sort_by: "low-to-high"
     });
   });
@@ -106,8 +106,6 @@ describe("<ExploreSidebar />", () => {
 
     userEvent.click(screen.getByLabelText(/low to high/i));
     userEvent.click(screen.getByLabelText(/high to low/i));
-
-    userEvent.click(screen.getByRole("button", { name: /filter/i }));
 
     expect(onFilter).toBeCalledWith({ sort_by: "high-to-low" });
   });
@@ -136,6 +134,10 @@ describe("<ExploreSidebar />", () => {
 
     userEvent.click(screen.getByLabelText(/close filters/i));
 
+    expect(Element).not.toHaveStyleRule("opacity", "1", variant);
+
+    userEvent.click(screen.getByLabelText(/open filters/i));
+    userEvent.click(screen.getByRole("button", { name: /filter/i }));
     expect(Element).not.toHaveStyleRule("opacity", "1", variant);
   });
 });

@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/react";
-import { ExploreSidebar, ExploreSidebarProps, Values } from ".";
+import { ExploreSidebar, ExploreSidebarProps } from ".";
 import { exploreSidebarMock } from "./mock";
 
 export default {
@@ -7,7 +7,7 @@ export default {
   component: ExploreSidebar,
   args: {
     items: exploreSidebarMock,
-    onFilter: (values: Values) => ({ values })
+    onFilter: () => console.log("filter")
   },
   parameters: {
     backgrounds: {
@@ -31,7 +31,7 @@ export const WithInitialValues: Story<ExploreSidebarProps> = (args) => (
 WithInitialValues.args = {
   initialValues: {
     free: true,
-    windows: true,
+    platforms: ["windows", "linux"],
     sort_by: "low-to-high"
   }
 };
