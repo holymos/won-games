@@ -1,20 +1,9 @@
+import { ItemProps } from "components/ExploreSidebar";
 import { ParsedUrlQueryInput } from "querystring";
 
-type Fields = {
-  label: string;
-  name: number | string;
-};
-
-export type FilterItemsArg = {
-  title: string;
-  name: string;
-  type: string;
-  fields: Fields[];
-}[];
-
-type ParseArgs = {
+export type ParseArgs = {
   queryString: ParsedUrlQueryInput;
-  filterItems: FilterItemsArg;
+  filterItems: Pick<ItemProps, "type" | "name">[];
 };
 
 export function parseQueryStringToWhere({

@@ -42,6 +42,7 @@ export interface QueryRecommended_recommendedGame_group_games_developers {
 
 export interface QueryRecommended_recommendedGame_group_games {
   __typename: "Game";
+  id: string;
   name: string;
   slug: string;
   cover: QueryRecommended_recommendedGame_group_games_cover | null;

@@ -1,10 +1,6 @@
-import {
-  FilterItemsArg,
-  parseQueryStringToFilter,
-  parseQueryStringToWhere
-} from ".";
+import { parseQueryStringToFilter, parseQueryStringToWhere } from ".";
 
-const filterItems: FilterItemsArg = [
+const filterItems = [
   { name: "price_lte", type: "radio" },
   { name: "platforms", type: "checkbox" },
   { name: "developers", type: "checkbox" },
