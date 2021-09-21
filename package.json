@@ -28,7 +28,7 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "^3.4.11",
+    "@apollo/client": "^3.4.13",
     "@styled-icons/boxicons-regular": "^10.38.0",
     "@styled-icons/boxicons-solid": "^10.38.0",
     "@styled-icons/fa-brands": "^10.38.0",
