@@ -1,12 +1,11 @@
-import { screen } from "@testing-library/react";
-import { renderWithTheme } from "utils/tests/helpers";
+import { render, screen } from "utils/test-utils";
 
 import { GameInfo } from ".";
 import { gameInfoMock } from "./mock";
 
 describe("<GameInfo />", () => {
   it("should render game info", () => {
-    const { container } = renderWithTheme(<GameInfo {...gameInfoMock} />);
+    const { container } = render(<GameInfo {...gameInfoMock} />);
 
     expect(
       screen.getByRole("heading", { name: /borderlands 3/i })
@@ -22,7 +21,7 @@ describe("<GameInfo />", () => {
   });
 
   it("should render buttons", () => {
-    renderWithTheme(<GameInfo {...gameInfoMock} />);
+    render(<GameInfo {...gameInfoMock} />);
 
     expect(
       screen.getByRole("button", { name: /add to cart/i })

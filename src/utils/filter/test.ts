@@ -1,6 +1,7 @@
+import { ItemProps } from "components/ExploreSidebar";
 import { parseQueryStringToFilter, parseQueryStringToWhere } from ".";
 
-const filterItems = [
+const filterItems: Pick<ItemProps, "type" | "name">[] = [
   { name: "price_lte", type: "radio" },
   { name: "platforms", type: "checkbox" },
   { name: "developers", type: "checkbox" },

@@ -17,7 +17,7 @@ export function CardList({ cards }: CardListProps) {
         <S.Card key={card.cardNumber}>
           {
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={card.image} alt={card.flag} />
+            <img src={card.img} alt={card.flag} />
           }
           <span>{card.cardNumber}</span>
         </S.Card>

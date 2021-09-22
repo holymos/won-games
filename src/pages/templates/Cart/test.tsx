@@ -1,10 +1,9 @@
-import { screen } from "@testing-library/react";
-import { cartListMock } from "components/CartList/mock";
+import { ReactNode } from "react";
+import { render, screen } from "utils/test-utils";
+
 import { gamesMock } from "components/GameCardSlider/mock";
 import { highlightMock } from "components/Highlight/mock";
 import { paymentOptionsMock } from "components/PaymentOptions/mock";
-import { ReactNode } from "react";
-import { renderWithTheme } from "utils/tests/helpers";
 
 import { Cart } from ".";
 
@@ -57,14 +56,12 @@ const props = {
   recommendedTitle: "You may like these games",
   recommendedGames: gamesMock,
   recommendedHighlight: highlightMock,
-  items: cartListMock,
-  total: "R$ 330,00",
   cards: paymentOptionsMock
 };
 
 describe("<Cart />", () => {
   it("should render the sections", () => {
-    renderWithTheme(<Cart {...props} />);
+    render(<Cart {...props} />);
 
     expect(
       screen.getByRole("heading", { name: /my cart/i })
@@ -74,11 +71,5 @@ describe("<Cart />", () => {
     expect(screen.getByTestId("Mock PaymentOptions")).toBeInTheDocument();
     expect(screen.getByTestId("Mock Showcase")).toBeInTheDocument();
     expect(screen.queryByTestId("Mock Empty")).not.toBeInTheDocument();
-  });
-
-  it("should render empty section if there are no items", () => {
-    renderWithTheme(<Cart {...props} items={[]} />);
-
-    expect(screen.getByTestId("Mock Empty")).toBeInTheDocument();
   });
 });

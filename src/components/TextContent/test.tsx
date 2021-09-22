@@ -1,12 +1,11 @@
-import { screen } from "@testing-library/react";
-import { renderWithTheme } from "utils/tests/helpers";
+import { render, screen } from "utils/test-utils";
 
 import { TextContent } from ".";
 import { textContentMock } from "./mock";
 
 describe("<TextContent />", () => {
   it("should render title and content", () => {
-    renderWithTheme(
+    render(
       <TextContent
         title={textContentMock.title}
         content={textContentMock.content.slice(0, 17)}
@@ -22,7 +21,7 @@ describe("<TextContent />", () => {
   });
 
   it("should render without title", () => {
-    renderWithTheme(<TextContent content={`<h1>Content</h1>`} />);
+    render(<TextContent content={`<h1>Content</h1>`} />);
 
     expect(
       screen.queryByRole("heading", { name: /title/i })
@@ -33,7 +32,7 @@ describe("<TextContent />", () => {
   });
 
   it("should render color white on mobile and black on desktop", () => {
-    renderWithTheme(<TextContent title="Title" content={`<h1>Content</h1>`} />);
+    render(<TextContent title="Title" content={`<h1>Content</h1>`} />);
 
     const wrapper = screen.getByRole("heading", {
       name: /title/i

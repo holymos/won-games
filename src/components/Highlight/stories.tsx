@@ -22,5 +22,5 @@ export const WithFloatImage: Story<HighlightProps> = (args) => (
 );
 
 WithFloatImage.args = {
-  floatImage: "/img/red-dead-float.png"
+  floatImg: "/img/red-dead-float.png"
 };

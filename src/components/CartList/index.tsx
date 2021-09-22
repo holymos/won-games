@@ -1,29 +1,41 @@
 import Link from "next/link";
 
 import { Button } from "components/Button";
-import { GameItem, GameItemProps } from "components/GameItem";
+import { GameItem } from "components/GameItem";
 
 import * as S from "./styles";
 import { Empty } from "components/Empty";
+import { useCart } from "hooks/useCart";
+import { Loader } from "components/Loader";
 
 export type CartListProps = {
-  items?: GameItemProps[];
-  total?: string;
   hasButton?: boolean;
 };
 
-export function CartList({
-  items = [],
-  total,
-  hasButton = false
-}: CartListProps) {
+export function CartList({ hasButton = false }: CartListProps) {
+  const { items, total, loading } = useCart();
+
+  if (loading) {
+    return (
+      <S.Loading>
+        <Loader />
+      </S.Loading>
+    );
+  }
+
   return (
     <S.Wrapper isEmpty={!items.length}>
       {items.length ? (
         <>
-          {items.map((item) => (
-            <GameItem key={item.title} {...item} />
-          ))}
+          <S.GamesList>
+            {items.map((item) => (
+              <Link key={item.title} href={`/game/${item.slug}`} passHref>
+                <a>
+                  <GameItem {...item} />
+                </a>
+              </Link>
+            ))}
+          </S.GamesList>
 
           <S.Footer>
             {!hasButton && <span>Total:</span>}

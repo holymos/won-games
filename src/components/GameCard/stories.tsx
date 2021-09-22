@@ -1,4 +1,5 @@
 import { Story, Meta } from "@storybook/react";
+import { CartContextData } from "contexts/cartContext";
 import { GameCard, GameCardProps } from ".";
 
 export default {
@@ -9,7 +10,7 @@ export default {
     title: "Population Zero",
     developer: "Rockstar Games",
     img: "https://source.unsplash.com/user/willianjusten/1042x580",
-    price: 235.0
+    price: "#235.00"
   },
   argTypes: {
     onFav: {
@@ -27,6 +28,16 @@ export const Default: Story<GameCardProps> = (args) => (
   </div>
 );
 
+export const IsInCart: Story<GameCardProps & CartContextData> = (args) => (
+  <div style={{ width: "30rem" }}>
+    <GameCard {...args} />
+  </div>
+);
+
+IsInCart.args = {
+  isInCart: () => true
+};
+
 export const WithPromotion: Story<GameCardProps> = (args) => (
   <div style={{ width: "30rem" }}>
     <GameCard {...args} />
@@ -34,7 +45,7 @@ export const WithPromotion: Story<GameCardProps> = (args) => (
 );
 
 WithPromotion.args = {
-  promotionalPrice: 200.0
+  promotionalPrice: "$200.00"
 };
 
 export const WithRibbon: Story<GameCardProps> = (args) => (
@@ -44,7 +55,7 @@ export const WithRibbon: Story<GameCardProps> = (args) => (
 );
 
 WithRibbon.args = {
-  promotionalPrice: 200.0,
+  promotionalPrice: "$200.00",
   ribbon: "20% OFF",
   ribbonSize: "small",
   ribbonColor: "primary"

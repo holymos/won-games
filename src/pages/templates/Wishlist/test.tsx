@@ -1,7 +1,7 @@
-import { screen } from "@testing-library/react";
+import { render, screen } from "utils/test-utils";
+
 import { gamesMock } from "components/GameCardSlider/mock";
 import { highlightMock } from "components/Highlight/mock";
-import { renderWithTheme } from "utils/tests/helpers";
 
 import { Wishlist } from ".";
 
@@ -16,7 +16,7 @@ jest.mock("components/Showcase", () => {
 
 describe("<Wishlist />", () => {
   it("should render correctly", () => {
-    renderWithTheme(
+    render(
       <Wishlist
         games={gamesMock}
         recommendedGames={gamesMock}
@@ -30,7 +30,7 @@ describe("<Wishlist />", () => {
   });
 
   it("should render empty component when there are no games", () => {
-    renderWithTheme(
+    render(
       <Wishlist
         recommendedGames={gamesMock}
         recommendedHighlight={highlightMock}

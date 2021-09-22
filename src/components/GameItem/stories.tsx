@@ -7,7 +7,7 @@ export default {
   args: {
     image: "https://source.unsplash.com/user/willianjusten/151x70",
     title: "Red Dead Redemption 2",
-    price: "R$ 215,00"
+    price: "$215.00"
   }
 } as Meta;
 
@@ -21,7 +21,7 @@ WithPayment.args = {
   downloadLink: "https://link.com/download",
   paymentInfo: {
     flag: "mastercard",
-    image: "/img/cards/mastercard.png",
+    img: "/img/cards/mastercard.png",
     cardNumber: "**** **** **** 4326",
     purchaseDate: "Purchase made on 08/09/2021 at 22:56"
   }

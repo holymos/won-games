@@ -23,7 +23,7 @@ export async function getStaticProps() {
   });
 
   return {
-    revalidade: 60,
+    revalidate: 60,
     props: {
       banners: bannerMapper(banners),
       newGamesTitle: sections?.newGames?.title,

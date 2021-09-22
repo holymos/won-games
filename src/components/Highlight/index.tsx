@@ -6,8 +6,8 @@ export type HighlightProps = {
   subtitle: string;
   buttonLabel: string;
   buttonLink: string;
-  backgroundImage: string;
-  floatImage?: string;
+  backgroundImg: string;
+  floatImg?: string;
   alignment?: "right" | "left";
 };
 
@@ -16,13 +16,13 @@ export function Highlight({
   subtitle,
   buttonLabel,
   buttonLink,
-  backgroundImage,
-  floatImage,
+  backgroundImg,
+  floatImg,
   alignment = "right"
 }: HighlightProps) {
   return (
-    <S.Wrapper backgroundImage={backgroundImage} alignment={alignment}>
-      {!!floatImage && <S.FloatImage src={floatImage} alt={title} />}
+    <S.Wrapper backgroundImg={backgroundImg} alignment={alignment}>
+      {!!floatImg && <S.FloatImage src={floatImg} alt={title} />}
       <S.Content>
         <S.Title>{title}</S.Title>
         <S.Subtitle>{subtitle}</S.Subtitle>

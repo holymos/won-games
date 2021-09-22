@@ -14,7 +14,7 @@ import * as S from "./styles";
 
 type Field = {
   label: string;
-  name: string;
+  name: string | number;
 };
 
 export type ItemProps = {
@@ -85,13 +85,13 @@ export function ExploreSidebar({
               item.fields.map((field) => (
                 <Checkbox
                   key={field.name}
-                  name={field.name}
+                  name={String(field.name)}
                   label={field.label}
-                  labelFor={field.name}
+                  labelFor={String(field.name)}
                   isChecked={(values[item.name] as string[])?.includes(
-                    field.name
+                    String(field.name)
                   )}
-                  onCheck={() => handleCheckbox(item.name, field.name)}
+                  onCheck={() => handleCheckbox(item.name, String(field.name))}
                 />
               ))}
 
@@ -99,15 +99,15 @@ export function ExploreSidebar({
               item.fields.map((field) => (
                 <Radio
                   key={field.name}
-                  id={field.name}
+                  id={String(field.name)}
                   name={item.name}
                   value={field.name}
                   label={field.label}
-                  labelFor={field.name}
+                  labelFor={String(field.name)}
                   defaultChecked={
                     String(field.name) === String(values[item.name])
                   }
-                  onChange={() => handleRadio(item.name, field.name)}
+                  onChange={() => handleRadio(item.name, String(field.name))}
                 />
               ))}
           </S.Items>

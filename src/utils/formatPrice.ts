@@ -4,3 +4,7 @@ export function formatPrice(price: number | bigint) {
     currency: "USD"
   }).format(price);
 }
+
+export function currencyToNumber(formattedPrice: string) {
+  return Number(formattedPrice.replace(/[^0-9.-]+/g, ""));
+}

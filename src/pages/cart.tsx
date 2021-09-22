@@ -1,5 +1,3 @@
-import { cartListMock } from "components/CartList/mock";
-
 import { paymentOptionsMock } from "components/PaymentOptions/mock";
 import { QueryRecommended } from "graphql/generated/QueryRecommended";
 import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
@@ -25,8 +23,6 @@ export async function getServerSideProps() {
       recommendedHighlight: highlightMapper(
         data.recommendedGame?.group?.highlight
       ),
-      items: cartListMock,
-      total: "$330.00",
       cards: paymentOptionsMock
     }
   };

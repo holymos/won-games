@@ -10,7 +10,7 @@ import * as S from "./styles";
 export type PaymentCard = {
   cardNumber: string;
   flag: string;
-  image: string;
+  img: string;
 };
 
 export type PaymentOptionsProps = {
@@ -34,7 +34,7 @@ export function PaymentOptions({ cards, handlePayment }: PaymentOptionsProps) {
               <S.CardInfo>
                 {
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={card.image} alt={card.flag} />
+                  <img src={card.img} alt={card.flag} />
                 }
                 {card.cardNumber}
               </S.CardInfo>

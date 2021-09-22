@@ -1,11 +1,10 @@
-import { fireEvent, screen } from "@testing-library/react";
-import { renderWithTheme } from "utils/tests/helpers";
+import { fireEvent, render, screen } from "utils/test-utils";
 
 import { Menu } from ".";
 
 describe("<Menu />", () => {
   it("should render the menu", () => {
-    renderWithTheme(<Menu />);
+    render(<Menu />);
 
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument();
@@ -14,7 +13,7 @@ describe("<Menu />", () => {
   });
 
   it("should handle open/close menu", () => {
-    renderWithTheme(<Menu />);
+    render(<Menu />);
 
     const fullMenuElement = screen.getByRole("navigation", { hidden: true });
 
@@ -33,14 +32,14 @@ describe("<Menu />", () => {
   });
 
   it("should show register box when logged out", () => {
-    renderWithTheme(<Menu />);
+    render(<Menu />);
 
     expect(screen.getByText(/login now/i)).toBeInTheDocument();
     expect(screen.getByText(/sign up/i)).toBeInTheDocument();
   });
 
   it("should show wishlist and profile links when logged in", () => {
-    renderWithTheme(<Menu username="moses" />);
+    render(<Menu username="moses" />);
 
     expect(screen.queryByText(/login now/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument();

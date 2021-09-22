@@ -16,5 +16,5 @@ export const Default: Story = (args) => <CartIcon {...args} />;
 export const WithBadge: Story = (args) => <CartIcon {...args} />;
 
 WithBadge.args = {
-  quantity: 2
+  quantity: 3
 };

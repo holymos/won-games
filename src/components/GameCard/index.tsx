@@ -1,23 +1,21 @@
 import Link from "next/link";
 
-import {
-  AddShoppingCart,
-  Favorite,
-  FavoriteBorder
-} from "@styled-icons/material-outlined";
+import { Favorite, FavoriteBorder } from "@styled-icons/material-outlined";
 
 import { Ribbon, RibbonColors, RibbonSizes } from "components/Ribbon";
-import { Button } from "components/Button";
+
 import * as S from "./styles";
-import { formatPrice } from "utils/formatPrice";
+import { currencyToNumber } from "utils/formatPrice";
+import { CartButton } from "components/CartButton";
 
 export type GameCardProps = {
+  id: string;
   slug: string;
   title: string;
   developer: string;
   img: string;
-  price: number;
-  promotionalPrice?: number;
+  price: string;
+  promotionalPrice?: string;
   favorite?: boolean;
   ribbon?: React.ReactNode;
   ribbonColor?: RibbonColors;
@@ -26,6 +24,7 @@ export type GameCardProps = {
 };
 
 export function GameCard({
+  id,
   slug,
   title,
   developer,
@@ -46,7 +45,7 @@ export function GameCard({
         </Ribbon>
       )}
 
-      <Link href={`game/${slug}`} passHref>
+      <Link href={`/game/${slug}`} passHref>
         <S.ImageBox>
           {
             // eslint-disable-next-line @next/next/no-img-element
@@ -56,7 +55,7 @@ export function GameCard({
       </Link>
 
       <S.Content>
-        <Link href={`game/${slug}`} passHref>
+        <Link href={`/game/${slug}`} passHref>
           <S.Info>
             <S.Title>{title}</S.Title>
             <S.Developer>{developer}</S.Developer>
@@ -72,13 +71,12 @@ export function GameCard({
         </S.FavButton>
 
         <S.BuyBox>
-          {!!promotionalPrice && (
-            <S.Price isPromotional>{formatPrice(price)}</S.Price>
-          )}
+          {!!promotionalPrice && <S.Price isPromotional>{price}</S.Price>}
           <S.Price>
-            {price > 0 ? formatPrice(promotionalPrice || price) : "Free"}
+            {currencyToNumber(price) > 0 ? promotionalPrice || price : "Free"}
           </S.Price>
-          <Button icon={<AddShoppingCart />} size="small" />
+
+          <CartButton id={id} />
         </S.BuyBox>
       </S.Content>
     </S.Wrapper>

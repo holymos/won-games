@@ -15,6 +15,7 @@ import { Grid } from "components/Grid";
 import * as S from "./styles";
 import { ParsedUrlQueryInput } from "querystring";
 import { Empty } from "components/Empty";
+import { formatPrice } from "utils/formatPrice";
 
 export type GamesTemplateProps = {
   filterItems: ItemProps[];
@@ -72,12 +73,13 @@ export function Games({ filterItems }: GamesTemplateProps) {
               <Grid>
                 {data?.games.map((game) => (
                   <GameCard
+                    id={game.id}
                     key={game.slug}
                     slug={game.slug}
                     title={game.name}
                     developer={game.developers[0].name}
                     img={`http://localhost:1337${game.cover!.url}`}
-                    price={game.price}
+                    price={formatPrice(game.price)}
                   />
                 ))}
               </Grid>

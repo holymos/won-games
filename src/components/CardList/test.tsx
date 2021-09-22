@@ -1,12 +1,12 @@
-import { screen } from "@testing-library/react";
+import { render, screen } from "utils/test-utils";
+
 import { paymentOptionsMock } from "components/PaymentOptions/mock";
-import { renderWithTheme } from "utils/tests/helpers";
 
 import { CardList } from ".";
 
 describe("<CardList />", () => {
   it("should render heading and card info", () => {
-    renderWithTheme(<CardList cards={paymentOptionsMock} />);
+    render(<CardList cards={paymentOptionsMock} />);
 
     expect(screen.getByRole("heading", { name: /my cards/i }));
 

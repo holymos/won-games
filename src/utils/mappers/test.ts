@@ -3,7 +3,7 @@ import {
   QueryHome_banners,
   QueryHome_sections_newGames_highlight
 } from "graphql/generated/QueryHome";
-import { bannerMapper, gamesMapper, highlightMapper } from ".";
+import { bannerMapper, cartMapper, gamesMapper, highlightMapper } from ".";
 
 describe("bannerMapper", () => {
   it("should return the righ format when mapped", () => {
@@ -67,7 +67,7 @@ describe("gamesMapper", () => {
         slug: "game",
         developer: "developer",
         img: "http://localhost:1337/image.jpg",
-        price: 10
+        price: "$10.00"
       }
     ]);
   });
@@ -96,11 +96,44 @@ describe("highlightMapper", () => {
     expect(highlightMapper(highlight)).toStrictEqual({
       title: "title",
       subtitle: "subtitle",
-      backgroundImage: "http://localhost:1337/image.jpg",
-      floatImage: "http://localhost:1337/image.jpg",
+      backgroundImg: "http://localhost:1337/image.jpg",
+      floatImg: "http://localhost:1337/image.jpg",
       buttonLabel: "button label",
       buttonLink: "button link",
       alignment: "right"
     });
+  });
+});
+
+describe("cartMapper", () => {
+  it("should return an empty array if there are no games", () => {
+    expect(cartMapper(null)).toStrictEqual([]);
+  });
+
+  it("should return the correct format when mapped", () => {
+    const game = {
+      id: "1",
+      name: "game",
+      developers: [
+        {
+          name: "developer"
+        }
+      ],
+      slug: "game",
+      cover: {
+        url: "/image.jpg"
+      },
+      price: 10
+    } as QueryGames_games;
+
+    expect(cartMapper([game])).toStrictEqual([
+      {
+        id: "1",
+        title: "game",
+        img: "http://localhost:1337/image.jpg",
+        price: "$10.00",
+        slug: "game"
+      }
+    ]);
   });
 });
