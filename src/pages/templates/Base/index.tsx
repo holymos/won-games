@@ -4,16 +4,19 @@ import { Container } from "components/Container";
 import { Footer } from "components/Footer";
 import { Menu } from "components/Menu";
 import * as S from "./styles";
+import { useSession } from "next-auth/client";
 
 export type BaseProps = {
   children: ReactNode;
 };
 
 export function Base({ children }: BaseProps) {
+  const [session] = useSession();
+
   return (
     <S.Wrapper>
       <Container>
-        <Menu />
+        <Menu username={session?.user?.name} />
       </Container>
 
       <S.Content>{children}</S.Content>
