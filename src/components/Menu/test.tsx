@@ -46,4 +46,11 @@ describe("<Menu />", () => {
     expect(screen.getAllByText(/wishlist/i)).toHaveLength(2);
     expect(screen.getByText(/my profile/i)).toBeInTheDocument();
   });
+
+  it("should not show sign in or dropdown user if loading", () => {
+    render(<Menu username="moses" loading />);
+
+    expect(screen.queryByText(/my profile/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/sign in/i)).not.toBeInTheDocument();
+  });
 });
