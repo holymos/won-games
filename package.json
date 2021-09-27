@@ -61,7 +61,7 @@
     "@testing-library/react": "^12.1.0",
     "@types/jest": "^27.0.1",
     "@types/next-auth": "3.7.1",
-    "@types/node": "^16.9.1",
+    "@types/node": "^16.10.1",
     "@types/react": "^17.0.21",
     "@types/react-lottie": "^1.2.6",
     "@types/react-slick": "^0.23.5",
