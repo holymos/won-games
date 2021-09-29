@@ -88,7 +88,9 @@ export function FormSignIn() {
           icon={<Lock />}
         />
 
-        <S.ForgotPassword href="#">Forgot your password?</S.ForgotPassword>
+        <Link href="/forgot-password" passHref>
+          <S.ForgotPassword>Forgot your password?</S.ForgotPassword>
+        </Link>
 
         <Button size="large" type="submit" fullWidth disabled={loading}>
           {loading ? <FormLoading /> : <span>Sign in</span>}

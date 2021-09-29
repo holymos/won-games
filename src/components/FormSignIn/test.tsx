@@ -8,6 +8,7 @@ const push = jest.fn();
 
 useRouter.mockImplementation(() => ({
   push,
+
   query: "",
   asPath: "",
   route: "/"
