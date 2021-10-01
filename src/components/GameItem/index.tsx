@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Trash } from "@styled-icons/boxicons-regular";
 import { Download } from "@styled-icons/boxicons-solid/Download";
 import { useCart } from "hooks/useCart";
@@ -23,6 +24,7 @@ export type GameItemProps = {
 
 export function GameItem({
   id,
+  slug,
   img,
   title,
   price,
@@ -42,18 +44,20 @@ export function GameItem({
         </S.ImageBox>
 
         <S.Content>
-          <S.Title>
-            {title}
-            {!!downloadLink && (
-              <S.DownloadLink
-                href={downloadLink}
-                target="_blank"
-                aria-label={`Get ${title} here`}
-              >
-                <Download size={22} />
-              </S.DownloadLink>
-            )}
-          </S.Title>
+          <Link href={`/game/${slug}`} passHref>
+            <S.Title>
+              {title}
+              {!!downloadLink && (
+                <S.DownloadLink
+                  href={downloadLink}
+                  target="_blank"
+                  aria-label={`Get ${title} here`}
+                >
+                  <Download size={22} />
+                </S.DownloadLink>
+              )}
+            </S.Title>
+          </Link>
 
           <S.Group>
             <S.Price>{price}</S.Price>

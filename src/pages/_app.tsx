@@ -10,6 +10,7 @@ import { useApollo } from "utils/apollo";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "styles/global";
 import theme from "styles/theme";
+import { WishlistContextProvider } from "contexts/wishlistContext";
 
 function App({ Component, pageProps }: AppProps) {
   const client = useApollo(pageProps.initialApolloState);
@@ -17,29 +18,31 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider session={pageProps.session}>
       <ApolloProvider client={client}>
-        <CartContextProvider>
-          <ThemeProvider theme={theme}>
-            <Head>
-              <title>Won Games</title>
-              <link rel="shortcut icon" href="/img/icon-512.png" />
-              <link rel="apple-touch-icon" href="/img/icon-512.png" />
-              <link rel="manifest" href="/manifest.json" />
-              <meta name="theme-color" content="#06092B" />
-              <meta
-                name="description"
-                content="A Game Store to rule them all"
+        <WishlistContextProvider>
+          <CartContextProvider>
+            <ThemeProvider theme={theme}>
+              <Head>
+                <title>Won Games</title>
+                <link rel="shortcut icon" href="/img/icon-512.png" />
+                <link rel="apple-touch-icon" href="/img/icon-512.png" />
+                <link rel="manifest" href="/manifest.json" />
+                <meta name="theme-color" content="#06092B" />
+                <meta
+                  name="description"
+                  content="A Game Store to rule them all"
+                />
+              </Head>
+              <GlobalStyles />
+              <NextNProgress
+                color="#F231A5"
+                startPosition={0.3}
+                stopDelayMs={200}
+                height={3}
               />
-            </Head>
-            <GlobalStyles />
-            <NextNProgress
-              color="#F231A5"
-              startPosition={0.3}
-              stopDelayMs={200}
-              height={3}
-            />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </CartContextProvider>
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </CartContextProvider>
+        </WishlistContextProvider>
       </ApolloProvider>
     </AuthProvider>
   );

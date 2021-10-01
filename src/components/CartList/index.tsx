@@ -29,11 +29,7 @@ export function CartList({ hasButton = false }: CartListProps) {
         <>
           <S.GamesList>
             {items.map((item) => (
-              <Link key={item.title} href={`/game/${item.slug}`} passHref>
-                <a>
-                  <GameItem {...item} />
-                </a>
-              </Link>
+              <GameItem {...item} key={item.title} />
             ))}
           </S.GamesList>
 

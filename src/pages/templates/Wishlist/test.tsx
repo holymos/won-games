@@ -1,9 +1,11 @@
+import "session.mock";
 import { render, screen } from "utils/test-utils";
 
 import { gamesMock } from "components/GameCardSlider/mock";
 import { highlightMock } from "components/Highlight/mock";
 
 import { Wishlist } from ".";
+import { WishlistContextDefaultValues } from "contexts/wishlistContext";
 
 jest.mock("components/Showcase", () => {
   return {
@@ -16,25 +18,36 @@ jest.mock("components/Showcase", () => {
 
 describe("<Wishlist />", () => {
   it("should render correctly", () => {
+    const wishlistProviderProps = {
+      ...WishlistContextDefaultValues,
+      items: [gamesMock[0]]
+    };
+
     render(
       <Wishlist
-        games={gamesMock}
         recommendedGames={gamesMock}
         recommendedHighlight={highlightMock}
-      />
+      />,
+      { wishlistProviderProps }
     );
 
     expect(screen.getByRole("heading", { name: /wishlist/i }));
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(6);
+    expect(screen.getByText(/population zero/i)).toBeInTheDocument();
     expect(screen.getByTestId("Mock Showcase")).toBeInTheDocument();
   });
 
   it("should render empty component when there are no games", () => {
+    const wishlistProviderProps = {
+      ...WishlistContextDefaultValues,
+      items: []
+    };
+
     render(
       <Wishlist
         recommendedGames={gamesMock}
         recommendedHighlight={highlightMock}
-      />
+      />,
+      { wishlistProviderProps }
     );
 
     expect(screen.queryByText(/population zero/i)).not.toBeInTheDocument();

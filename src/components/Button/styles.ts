@@ -63,6 +63,10 @@ export const Wrapper = styled.button<WrapperProps>`
     text-decoration: none;
     transition: background 0.3s ease-in-out;
 
+    &:focus {
+      outline: 1px dashed;
+    }
+
     &:hover {
       background: ${minimal
         ? "none"

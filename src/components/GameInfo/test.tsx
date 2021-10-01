@@ -1,7 +1,8 @@
+import "session.mock";
 import { render, screen } from "utils/test-utils";
 
 import { GameInfo } from ".";
-import { gameInfoMock } from "./mock";
+import { freeGameInfoMock, gameInfoMock } from "./mock";
 
 describe("<GameInfo />", () => {
   it("should render game info", () => {
@@ -27,7 +28,13 @@ describe("<GameInfo />", () => {
       screen.getByRole("button", { name: /add to cart/i })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /wishlist/i })
+      screen.getByRole("button", { name: /add to wishlist/i })
     ).toBeInTheDocument();
+  });
+
+  it("should render free text if price is 0", () => {
+    render(<GameInfo {...freeGameInfoMock} />);
+
+    expect(screen.getByText(/free/i)).toBeInTheDocument();
   });
 });

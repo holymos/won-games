@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "utils/test-utils";
+import "session.mock";
+import { render, screen } from "utils/test-utils";
 
 import { GameCard } from ".";
 
@@ -67,22 +68,6 @@ describe("<GameCard />", () => {
     render(<GameCard {...props} />);
 
     expect(screen.getByLabelText(/add to wishlist/i)).toBeInTheDocument();
-  });
-
-  it("should render filled icon is favorite is true", () => {
-    render(<GameCard {...props} favorite />);
-
-    expect(screen.getByLabelText(/remove from wishlist/i)).toBeInTheDocument();
-  });
-
-  it("should call onFav method when favorite is clicked", () => {
-    const onFav = jest.fn();
-
-    render(<GameCard {...props} onFav={onFav} />);
-
-    fireEvent.click(screen.getAllByRole("button")[0]);
-
-    expect(onFav).toBeCalled();
   });
 
   it("should render a ribbon", () => {
