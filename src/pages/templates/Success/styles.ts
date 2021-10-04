@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import media from "styled-media-query";
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
@@ -18,6 +19,34 @@ export const CheckMark = styled.div`
   ${({ theme }) => css`
     text-align: center;
     padding: ${theme.spacings.medium};
+    position: relative;
+
+    &::after,
+    &::before {
+      content: "";
+      background: ${theme.colors.primary};
+      display: block;
+      position: absolute;
+      width: 43%;
+      height: 1px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+
+    ${media.lessThan("medium")`
+      &::after,
+      &::before {
+        width: 30%;
+    }
+    `}
 
     svg {
       color: ${theme.colors.white};
@@ -25,6 +54,7 @@ export const CheckMark = styled.div`
       border-radius: 50%;
       padding: 1rem;
       width: 7rem;
+      position: relative;
     }
   `}
 `;
@@ -36,6 +66,7 @@ export const Text = styled.p`
     text-align: center;
     max-width: 60rem;
     margin: auto;
+    line-height: 1.5;
 
     a {
       color: ${theme.colors.primary};
