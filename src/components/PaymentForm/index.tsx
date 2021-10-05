@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { Session } from "next-auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { StripeCardElementChangeEvent } from "@stripe/stripe-js";
+import { PaymentIntent, StripeCardElementChangeEvent } from "@stripe/stripe-js";
 import { ErrorOutline, ShoppingCart } from "@styled-icons/material-outlined";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
@@ -12,7 +12,7 @@ import { Button } from "components/Button";
 import theme from "styles/theme";
 
 import { useCart } from "hooks/useCart";
-import { createPaymentIntent } from "utils/stripe/methods";
+import { createPayment, createPaymentIntent } from "utils/stripe/methods";
 
 import * as S from "./styles";
 import { FormLoading } from "components/Form";
@@ -72,12 +72,24 @@ export function PaymentForm({ session }: PaymentFormProps) {
     setError(event.error ? event.error?.message : "");
   }
 
+  async function saveOrder(paymentIntent?: PaymentIntent) {
+    const data = await createPayment({
+      items,
+      paymentIntent,
+      token: session.jwt as string
+    });
+
+    return data;
+  }
+
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setLoading(true);
 
     // se for freeGames salva no banco redireciona para success
     if (freeGames) {
+      saveOrder();
+
       push("/success");
       return;
     }
@@ -96,6 +108,8 @@ export function PaymentForm({ session }: PaymentFormProps) {
       setLoading(false);
 
       // salvar a compra no banco do Strapi
+      saveOrder(payload.paymentIntent);
+
       // redirectionar para a página de Sucesso
       push("/success");
     }
