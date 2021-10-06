@@ -7,8 +7,8 @@ import * as S from "./styles";
 
 export type PaymentInfoProps = {
   cardNumber: string;
-  flag: string;
-  img: string;
+  flag: string | null;
+  img: string | null;
   purchaseDate: string;
 };
 
@@ -77,10 +77,10 @@ export function GameItem({
 
           <S.CardInfo>
             <span>{paymentInfo.cardNumber}</span>
-            {
+            {!!paymentInfo.img && !!paymentInfo.flag && (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={paymentInfo.img} alt={paymentInfo.flag} />
-            }
+            )}
           </S.CardInfo>
         </S.PaymentContent>
       )}
