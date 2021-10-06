@@ -52,6 +52,13 @@ jest.mock("components/Empty", () => {
 });
 
 const props = {
+  session: {
+    jwt: "token",
+    user: {
+      email: "email@email.com"
+    },
+    expires: "1234"
+  },
   recommendedTitle: "You may like these games",
   recommendedGames: gamesMock,
   recommendedHighlight: highlightMock
