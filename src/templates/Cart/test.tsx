@@ -6,7 +6,7 @@ import { highlightMock } from "components/Highlight/mock";
 
 import { Cart } from ".";
 
-jest.mock("pages/templates/Base", () => {
+jest.mock("templates/Base", () => {
   return {
     __esModule: true,
     Base: function Mock({ children }: { children: ReactNode }) {

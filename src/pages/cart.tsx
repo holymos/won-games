@@ -4,7 +4,7 @@ import { GetServerSidePropsContext } from "next";
 import { initializeApollo } from "utils/apollo";
 import { gamesMapper, highlightMapper } from "utils/mappers";
 import { protectedRoutes } from "utils/protectedRoutes";
-import { Cart, CartTemplateProps } from "./templates/Cart";
+import { Cart, CartTemplateProps } from "templates/Cart";
 
 export default function CartPage(props: CartTemplateProps) {
   return <Cart {...props} />;

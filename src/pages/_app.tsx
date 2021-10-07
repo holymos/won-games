@@ -3,6 +3,8 @@ import { Provider as AuthProvider } from "next-auth/client";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
+import { DefaultSeo } from "next-seo";
+import SEO from "../../next-seo.config";
 
 import { CartContextProvider } from "contexts/cartContext";
 import { useApollo } from "utils/apollo";
@@ -32,6 +34,7 @@ function App({ Component, pageProps }: AppProps) {
                   content="A Game Store to rule them all"
                 />
               </Head>
+              <DefaultSeo {...SEO} />
               <GlobalStyles />
               <NextNProgress
                 color="#F231A5"

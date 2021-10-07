@@ -38,10 +38,9 @@ describe("<Highlight />", () => {
   it("should render a float image", () => {
     render(<Highlight {...props} floatImg="/float-image.png" />);
 
-    expect(screen.getByRole("img", { name: props.title })).toHaveAttribute(
-      "src",
-      "/float-image.png"
-    );
+    expect(
+      screen.getAllByRole("img", { name: props.title })[1]
+    ).toHaveAttribute("src", "/float-image.png");
   });
 
   it("should render aligned right by default", () => {

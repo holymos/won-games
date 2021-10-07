@@ -23,12 +23,6 @@ exports[`<CartList /> should render items and price 1`] = `
   height: 5.6rem;
 }
 
-.c4 img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .c5 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -173,7 +167,9 @@ exports[`<CartList /> should render items and price 1`] = `
         >
           <img
             alt="Red Dead Redemption 2"
+            height="70"
             src="https://source.unsplash.com/user/willianjusten/151x70"
+            width="150"
           />
         </div>
         <div
@@ -208,7 +204,9 @@ exports[`<CartList /> should render items and price 1`] = `
         >
           <img
             alt="Borderlands 3"
+            height="70"
             src="https://source.unsplash.com/user/willianjusten/151x70"
+            width="150"
           />
         </div>
         <div

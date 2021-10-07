@@ -1,4 +1,4 @@
-import { Home, HomeTemplateProps } from "pages/templates/Home";
+import { Home, HomeTemplateProps } from "templates/Home";
 
 import { initializeApollo } from "utils/apollo";
 import { QUERY_HOME } from "graphql/queries/home";

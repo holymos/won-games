@@ -10,6 +10,7 @@ import { highlightMock } from "components/Highlight/mock";
 import { Game, GameTemplateProps } from ".";
 
 const props: GameTemplateProps = {
+  slug: "game",
   recommendedTitle: "You may like these games",
   cover: "bg-image.jpg",
   gameInfo: gameInfoMock,
@@ -110,18 +111,17 @@ describe("<Game />", () => {
   it("should render a cover image", () => {
     render(<Game {...props} />);
 
-    const cover = screen.getByRole("image", { name: /cover/i });
+    const cover = screen.getByRole("img", { name: gameInfoMock.title });
 
-    expect(cover).toHaveStyle({
-      backgroundImage: "url(bg-image.jpg)",
+    expect(cover.parentElement).toHaveStyle({
       height: "39.5rem"
     });
 
-    expect(cover).toHaveStyleRule("height", "70rem", {
+    expect(cover.parentElement).toHaveStyleRule("height", "70rem", {
       media: "(min-width: 768px)"
     });
 
-    expect(cover).toHaveStyleRule(
+    expect(cover.parentElement).toHaveStyleRule(
       "clip-path",
       "polygon(0 0,100% 0,100% 100%,0 85%)",
       {

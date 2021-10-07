@@ -6,7 +6,7 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(() => ({ asPath: "/profile/me" }))
 }));
 
-jest.mock("pages/templates/Base", () => ({
+jest.mock("templates/Base", () => ({
   __esModule: true,
   Base: function Mock({ children }: { children: React.ReactNode }) {
     return <div data-testid="Mock Base">{children}</div>;

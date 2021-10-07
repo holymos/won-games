@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "components/Button";
 import * as S from "./styles";
 
@@ -21,8 +22,13 @@ export function Highlight({
   alignment = "right"
 }: HighlightProps) {
   return (
-    <S.Wrapper backgroundImg={backgroundImg} alignment={alignment}>
-      {!!floatImg && <S.FloatImage src={floatImg} alt={title} />}
+    <S.Wrapper alignment={alignment}>
+      <Image src={backgroundImg} alt={title} layout="fill" />
+      {!!floatImg && (
+        <S.FloatImageWrapper>
+          <Image src={floatImg} alt={title} width={400} height={300} />
+        </S.FloatImageWrapper>
+      )}
       <S.Content>
         <S.Title>{title}</S.Title>
         <S.Subtitle>{subtitle}</S.Subtitle>

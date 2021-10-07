@@ -1,5 +1,5 @@
 import { FormResetPassword } from "components/FormResetPassword";
-import { Auth } from "./templates/Auth";
+import { Auth } from "templates/Auth";
 
 export default function ResetPassword() {
   return (

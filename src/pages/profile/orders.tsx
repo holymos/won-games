@@ -2,7 +2,7 @@ import { GetServerSidePropsContext } from "next";
 import { protectedRoutes } from "utils/protectedRoutes";
 
 import { OrderList, OrderListProps } from "components/OrderList";
-import { Profile } from "pages/templates/Profile";
+import { Profile } from "templates/Profile";
 import { initializeApollo } from "utils/apollo";
 import {
   QueryOrders,
@@ -23,11 +23,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await protectedRoutes(context);
   const apolloClient = initializeApollo(null, session);
 
+  if (!session) {
+    return { props: {} };
+  }
+
   const { data } = await apolloClient.query<QueryOrders, QueryOrdersVariables>({
     query: QUERY_ORDERS,
     variables: {
       identifier: session?.id as string
-    }
+    },
+    fetchPolicy: "no-cache"
   });
 
   return {

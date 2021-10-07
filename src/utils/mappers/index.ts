@@ -6,10 +6,11 @@ import {
 import { QueryOrders_orders } from "graphql/generated/QueryOrders";
 import { QueryWishlist_wishlists_games } from "graphql/generated/QueryWishlist";
 import { formatPrice } from "utils/formatPrice";
+import { getImageUrl } from "utils/getImageUrl";
 
 export function bannerMapper(banners: QueryHome_banners[]) {
   return banners.map((banner) => ({
-    img: `http://localhost:1337${banner.image?.url}`,
+    img: getImageUrl(banner.image?.url),
     title: banner.title,
     subtitle: banner.subtitle,
     ...(banner.button && {
@@ -31,7 +32,7 @@ export function gamesMapper(games: QueryGames_games[] | null | undefined) {
         title: game.name,
         slug: game.slug,
         developer: game.developers[0].name,
-        img: `http://localhost:1337${game.cover?.url}`,
+        img: getImageUrl(game.cover?.url),
         price: formatPrice(game.price)
       }))
     : [];
@@ -44,8 +45,8 @@ export function highlightMapper(
     ? {
         title: highlight.title,
         subtitle: highlight.subtitle,
-        backgroundImg: `http://localhost:1337${highlight.background?.url}`,
-        floatImg: `http://localhost:1337${highlight.floatImage?.url}`,
+        backgroundImg: getImageUrl(highlight.background?.url),
+        floatImg: getImageUrl(highlight.floatImage?.url),
         buttonLabel: highlight.buttonLabel,
         buttonLink: highlight.buttonLink,
         alignment: highlight.alignment
@@ -60,7 +61,7 @@ export function cartMapper(
     ? games.map((game) => ({
         id: game.id,
         title: game.name,
-        img: `http://localhost:1337${game.cover?.url}`,
+        img: getImageUrl(game.cover?.url),
         price: formatPrice(game.price),
         slug: game.slug
       }))
@@ -88,7 +89,7 @@ export function ordersMapper(orders: QueryOrders_orders[]) {
           title: game.name,
           downloadLink:
             "https://wongames.com/game/download/yuYT56Tgh431LkjhNBgdf",
-          img: `http://localhost:1337${game.cover?.url}`,
+          img: getImageUrl(game.cover?.url),
           price: formatPrice(game.price)
         }))
       }))

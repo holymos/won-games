@@ -3,7 +3,7 @@ import { QueryGames, QueryGamesVariables } from "graphql/generated/QueryGames";
 import { QUERY_GAMES } from "graphql/queries/games";
 import { parseQueryStringToWhere } from "utils/filter";
 
-import { Games, GamesTemplateProps } from "./templates/Games";
+import { Games, GamesTemplateProps } from "templates/Games";
 import { GetServerSidePropsContext } from "next";
 import {
   genreFields,

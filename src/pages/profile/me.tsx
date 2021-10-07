@@ -5,7 +5,7 @@ import { initializeApollo } from "utils/apollo";
 import { protectedRoutes } from "utils/protectedRoutes";
 
 import { QUERY_PROFILE_ME } from "graphql/queries/profile";
-import { Profile } from "pages/templates/Profile";
+import { Profile } from "templates/Profile";
 import {
   QueryProfileMe,
   QueryProfileMeVariables
@@ -22,6 +22,10 @@ export default function Me(props: FormProfileProps) {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await protectedRoutes(context);
   const apolloClient = initializeApollo(null, session);
+
+  if (!session) {
+    return { props: {} };
+  }
 
   const { data } = await apolloClient.query<
     QueryProfileMe,

@@ -8,6 +8,6 @@ module.exports = withPWA({
     disable: !isProd
   },
   images: {
-    domains: ["source.unsplash.com"]
+    domains: ["localhost", "res.cloudinary.com"]
   }
 });

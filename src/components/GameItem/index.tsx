@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Trash } from "@styled-icons/boxicons-regular";
 import { Download } from "@styled-icons/boxicons-solid/Download";
@@ -37,10 +38,7 @@ export function GameItem({
     <S.Wrapper>
       <S.GameContent>
         <S.ImageBox>
-          {
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={img} alt={title} />
-          }
+          <Image src={img} alt={title} width={150} height={70} />
         </S.ImageBox>
 
         <S.Content>
@@ -78,8 +76,12 @@ export function GameItem({
           <S.CardInfo>
             <span>{paymentInfo.cardNumber}</span>
             {!!paymentInfo.img && !!paymentInfo.flag && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={paymentInfo.img} alt={paymentInfo.flag} />
+              <Image
+                src={paymentInfo.img}
+                alt={paymentInfo.flag}
+                width={38}
+                height={24}
+              />
             )}
           </S.CardInfo>
         </S.PaymentContent>

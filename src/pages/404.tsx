@@ -1,4 +1,4 @@
-import { Base } from "./templates/Base";
+import { Base } from "templates/Base";
 import { Container } from "components/Container";
 import { Empty } from "components/Empty";
 

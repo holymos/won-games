@@ -24,15 +24,10 @@ export function CartButton({
 
   return (
     <Button
-      icon={
-        isInCart(id) ? (
-          <RemoveShoppingCart aria-label="Remove from cart" />
-        ) : (
-          <AddShoppingCart aria-label="Add to cart" />
-        )
-      }
+      icon={isInCart(id) ? <RemoveShoppingCart /> : <AddShoppingCart />}
       size={size}
       onClick={handleClick}
+      aria-label={ButtonText}
     >
       {hasText && ButtonText}
     </Button>

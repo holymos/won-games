@@ -18,12 +18,12 @@ export function Footer() {
           <a href="tel:+552133283719">+55 21 33283719</a>
         </S.Column>
 
-        <S.Column>
+        <S.Column aria-labelledby="social media">
           <Heading color="black" size="small" lineBottom lineColor="secondary">
             Follow us
           </Heading>
 
-          <nav aria-labelledby="social media">
+          <nav id="social-media">
             <a
               href="https://www.instagram.com/wongames"
               target="_"
@@ -55,12 +55,12 @@ export function Footer() {
           </nav>
         </S.Column>
 
-        <S.Column>
+        <S.Column aria-labelledby="resources">
           <Heading color="black" size="small" lineBottom lineColor="secondary">
             Links
           </Heading>
 
-          <nav aria-labelledby="footer resources">
+          <nav id="resouces">
             <Link href="/">
               <a>Home</a>
             </Link>
@@ -75,7 +75,7 @@ export function Footer() {
           </nav>
         </S.Column>
 
-        <S.Column aria-labelledby="footer contact">
+        <S.Column aria-label="contact">
           <Heading color="black" size="small" lineBottom lineColor="secondary">
             Location
           </Heading>

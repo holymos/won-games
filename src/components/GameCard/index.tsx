@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Ribbon, RibbonColors, RibbonSizes } from "components/Ribbon";
@@ -42,10 +43,7 @@ export function GameCard({
 
       <Link href={`/game/${slug}`} passHref>
         <S.ImageBox>
-          {
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={img} alt={title} />
-          }
+          <Image src={img} alt={title} layout="fill" objectFit="cover" />
         </S.ImageBox>
       </Link>
 

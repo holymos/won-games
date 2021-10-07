@@ -16,6 +16,7 @@ import * as S from "./styles";
 import { ParsedUrlQueryInput } from "querystring";
 import { Empty } from "components/Empty";
 import { formatPrice } from "utils/formatPrice";
+import { getImageUrl } from "utils/getImageUrl";
 
 export type GamesTemplateProps = {
   filterItems: ItemProps[];
@@ -78,7 +79,7 @@ export function Games({ filterItems }: GamesTemplateProps) {
                     slug={game.slug}
                     title={game.name}
                     developer={game.developers[0].name}
-                    img={`http://localhost:1337${game.cover!.url}`}
+                    img={getImageUrl(game.cover!.url) as string}
                     price={formatPrice(game.price)}
                   />
                 ))}
