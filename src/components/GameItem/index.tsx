@@ -16,7 +16,7 @@ export type PaymentInfoProps = {
 export type GameItemProps = {
   id: string;
   slug: string;
-  img: string;
+  img: string | null;
   title: string;
   price: string;
   downloadLink?: string;
@@ -37,9 +37,11 @@ export function GameItem({
   return (
     <S.Wrapper>
       <S.GameContent>
-        <S.ImageBox>
-          <Image src={img} alt={title} width={150} height={70} />
-        </S.ImageBox>
+        {img && (
+          <S.ImageBox>
+            <Image src={img} alt={title} width={150} height={70} />
+          </S.ImageBox>
+        )}
 
         <S.Content>
           <Link href={`/game/${slug}`} passHref>

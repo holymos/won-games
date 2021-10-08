@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 import * as S from "./styles";
 
 export type BannerProps = {
-  img: string;
+  img: string | null;
   title: string;
   subtitle: string;
   buttonLabel: string;
@@ -33,9 +33,11 @@ export function Banner({
         </Ribbon>
       )}
 
-      <S.ImageWrapper>
-        <Image src={img} alt={title} layout="fill" objectFit="cover" />
-      </S.ImageWrapper>
+      {img && (
+        <S.ImageWrapper>
+          <Image src={img} alt={title} layout="fill" objectFit="cover" />
+        </S.ImageWrapper>
+      )}
 
       <S.Caption>
         <S.Title>{title}</S.Title>
