@@ -19,7 +19,7 @@ export function Showcase({
   color = "white"
 }: ShowcaseProps) {
   return (
-    <S.Wrapper>
+    <S.Wrapper data-cy={title || "Showcase"}>
       {!!title && (
         <Heading lineLeft lineColor="secondary">
           {title}

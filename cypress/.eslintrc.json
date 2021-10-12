@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:prettier/recommended",
+    "plugin:cypress/recommended"
+  ],
+  "plugins": ["cypress"],
+  "env": { "cypress/globals": true }
+}

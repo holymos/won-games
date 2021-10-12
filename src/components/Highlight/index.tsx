@@ -22,7 +22,7 @@ export function Highlight({
   alignment = "right"
 }: HighlightProps) {
   return (
-    <S.Wrapper alignment={alignment}>
+    <S.Wrapper alignment={alignment} data-cy="highlight">
       <Image src={backgroundImg} alt={title} layout="fill" />
       {!!floatImg && (
         <S.FloatImageWrapper>

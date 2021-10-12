@@ -41,7 +41,7 @@ export function GameDetails({
     rating === "BR0" ? "Free" : `${rating.replace("BR", "")}+`;
 
   return (
-    <S.Wrapper>
+    <S.Wrapper data-cy="game-details">
       <MediaMatch greaterThan="small">
         <Heading lineLeft lineColor="secondary">
           Game Details

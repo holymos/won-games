@@ -34,7 +34,7 @@ export function GameCard({
   ribbonSize = "small"
 }: GameCardProps) {
   return (
-    <S.Wrapper>
+    <S.Wrapper data-cy="game-card">
       {!!ribbon && (
         <Ribbon color={ribbonColor} size={ribbonSize}>
           {ribbon}

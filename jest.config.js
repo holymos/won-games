@@ -11,7 +11,8 @@ module.exports = {
     "!src/utils/apolloCache.ts",
     "!src/types/**/*.d.ts",
     "!src/graphql/**/*.ts",
-    "!src/**/mock.ts"
+    "!src/**/mock.ts",
+    "!cypress/**/*"
   ],
   setupFilesAfterEnv: ["<rootDir>/.jest/setup.ts"],
   modulePaths: ["<rootDir>/src/", "<rootDir>/.jest"]
