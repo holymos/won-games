@@ -3488,10 +3488,10 @@
   dependencies:
     prop-types "^15.7.2"
 
-"@stripe/stripe-js@^1.19.0":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.19.0.tgz#2704adeabcca4ac64d3a5168b2705b165b89e633"
-  integrity sha512-HycB9mnCCaontVCH9tnRoGVofp4H2c+m518e3g5vLVGmmHVI7qOSI71TGbJ0XoHdfFf2EN2HUAGMCNT5IiiuNQ==
+"@stripe/stripe-js@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.25.0.tgz#74334e3f9971e8dfd352a67581c6e02dc5c2ebf8"
+  integrity sha512-cywIoKu3sJnBPQ1eKi3BzFHWslA2ePqHvQhcxp7iYYlo1tWcVgEKTSh7y7hb6GoR4TyT3DwlK4v1vOZpVg8u4Q==
 
 "@styled-icons/boxicons-regular@^10.38.0":
   version "10.38.0"
