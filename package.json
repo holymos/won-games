@@ -72,7 +72,7 @@
     "@types/jest": "^27.0.2",
     "@types/next-auth": "3.7.1",
     "@types/node": "^16.10.3",
-    "@types/react": "^17.0.21",
+    "@types/react": "^18.0.9",
     "@types/react-lottie": "^1.2.6",
     "@types/react-slick": "^0.23.5",
     "@types/styled-components": "^5.1.14",
